@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Zenith Notes - retro CRT terminal notes">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="stylesheet" href="style.css">
+  <title>izuka@notes: ~/notes</title>
+</head>
+<body>
+  <div class="crt"></div>
+
+  <main class="terminal">
+    <header class="titlebar">
+      <div class="traffic" aria-hidden="true">
+        <span class="dot red"></span>
+        <span class="dot amber"></span>
+        <span class="dot green"></span>
+      </div>
+      <div class="path"><strong>izuka</strong>@notes: <span>~/notes</span></div>
+      <nav>
+        <a href="#notes">~/notes</a>
+        <a href="#new-note">~/new</a>
+        <a href="#about">~/about</a>
+      </nav>
+      <div class="status"><i></i> local storage</div>
+    </header>
+
+    <section class="hero">
+      <div class="prompt">izuka@notes:~/notes $ <span>whoami --notes</span></div>
+      <h1 class="name">ZENITH NOTES<span class="cursor">_</span></h1>
+      <p class="role">&gt; personal notes, stored locally</p>
+      <p class="intro">
+        A command-driven notebook for quick thoughts, study material, ideas,
+        screenshots, and anything worth keeping. No account. No server. Just your notes.
+      </p>
+      <div class="meta">
+        <span>[x] local-first</span>
+        <span>[x] offline-ready</span>
+        <span>[x] image support</span>
+        <span>[x] editable dates</span>
+      </div>
+      <div class="commands">
+        <a class="cmd primary" href="#notes">$ ls ~/notes -la -&gt;</a>
+        <a class="cmd" href="#new-note">./notes --new</a>
+      </div>
+    </section>
+
+    <section id="notes" class="section">
+      <div class="prompt">izuka@notes:~/notes $ <span>ls -la ~/notes</span></div>
+      <div class="section-label">&gt; note index</div>
+      <div class="section-head">
+        <div>
+          <h2>Saved notes // local filesystem</h2>
+          <p class="muted">Search, edit, inspect, or remove entries.</p>
+        </div>
+        <label class="search">
+          <span>$ grep</span>
+          <input id="searchInput" type="search" placeholder="search notes..." autocomplete="off">
+        </label>
+      </div>
+      <div id="noteList" class="notes-grid"></div>
+    </section>
+
+    <section id="new-note" class="section">
+      <div class="prompt">izuka@notes:~/notes $ <span>./notes --new</span></div>
+      <div class="section-label">&gt; create / edit</div>
+      <div class="editor-panel">
+        <div class="editor-title">
+          <span id="editorMode">NEW NOTE</span>
+          <span class="editor-path">~/notes/&lt;entry&gt;</span>
+        </div>
+        <form id="noteForm">
+          <input type="hidden" id="noteId">
+          <div class="field">
+            <label for="noteTitle">TITLE</label>
+            <input id="noteTitle" type="text" maxlength="120" placeholder="note title..." required>
+          </div>
+          <div class="field">
+            <label for="noteDate">DATE</label>
+            <input id="noteDate" type="date" required>
+          </div>
+          <div class="field">
+            <label for="noteBody">CONTENT</label>
+            <textarea id="noteBody" rows="10" placeholder="write your note..." required></textarea>
+          </div>
+          <div class="field">
+            <label for="noteImage">IMAGE</label>
+            <input id="noteImage" type="file" accept="image/*">
+            <div id="imagePreview" class="image-preview"></div>
+            <button type="button" id="removeImage" class="mini" hidden>[-] remove image</button>
+          </div>
+          <div class="form-actions">
+            <button class="cmd-button primary" type="submit">$ save_note --commit</button>
+            <button class="cmd-button" type="button" id="cancelEdit">./cancel</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section id="about" class="section compact">
+      <div class="prompt">izuka@notes:~/notes $ <span>neofetch</span></div>
+      <div class="neo">
+        <pre aria-hidden="true">
+   ███████╗
+   ╚══███╔╝
+      ███╔╝
+     ███╔╝
+    ███╔╝
+   ███████╗
+   ╚══════╝
+        </pre>
+        <div class="neo-data">
+          <strong>izuka@notes ----------------</strong>
+          <p><b>OS:</b> Zenith Notes</p>
+          <p><b>Storage:</b> browser localStorage</p>
+          <p><b>Mode:</b> offline-first / PWA</p>
+          <p><b>Features:</b> search, edit, date, image</p>
+          <p><b>Status:</b> <em>ready</em></p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>$ echo "(c) 2026 Zenith Notes, built in the terminal, stored locally"<span class="cursor">_</span></div>
+      <div class="git">last commit: now, main@notes, storage: local</div>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
